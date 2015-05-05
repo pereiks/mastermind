@@ -8,9 +8,6 @@ import sys
 TRIES = 12
 COLOR_VARIATIONS = 6
 
-the_code = ""
-comp_db = []
-
 def terminal_size():
     import fcntl, termios, struct
     h, w, hp, wp = struct.unpack('HHHH',
@@ -68,6 +65,8 @@ def game(mode,output):
 	else:
 		return -1
 
+
+# TBD
 def five_move_algorithm(attempt,result):
 	global comp_db
 	if attempt==0:
@@ -85,8 +84,6 @@ def five_move_algorithm(attempt,result):
 		for item in comp_db_tmp:
 			comp_db.remove(item)
 
-
-
 def custom_algorithm(attempt,result):
 	global comp_db
 	comp_db_tmp=[]
@@ -94,7 +91,7 @@ def custom_algorithm(attempt,result):
 		for i in range(1111,6667):
 			if re.match('^[123456]{4}$',str(i)):
 				comp_db.append(str(i))
-		return '0000'
+		return '1111'
 	else:
 		color_peg = result[attempt-1][0]
 		white_peg = result[attempt-1][1]
@@ -117,6 +114,8 @@ def player_game(attempt):
 
 
 while True:
+	the_code = ""
+	comp_db = []
 	print '\033[40m'+'\033[37m',' ' * (terminal_size()[0]-2),'\r',
 	print "=== Welcome to MasterMind ==="
 	print "Please choose game mode:"
